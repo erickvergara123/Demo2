@@ -11,7 +11,8 @@ import sec.project.domain.User;
 
 
 public class CustomUserDetails extends sec.project.domain.User implements UserDetails {	
-	
+
+	//Comentarios Erick
 	private static final long serialVersionUID = 1L;
 	private List<String> userRoles;
 	
