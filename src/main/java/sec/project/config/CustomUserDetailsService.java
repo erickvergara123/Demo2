@@ -14,7 +14,7 @@ import sec.project.repository.UserRolesRepository;
 
 
 
-//Erick
+//Erick otro mas
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService{
 	private final UserRepository userRepository;
