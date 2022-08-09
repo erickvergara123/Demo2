@@ -38,7 +38,7 @@ jobs:
           checkmarx_client_secret: "014DF517-39D1-4453-B7B3-9930C563627C"  # To be stored in GitHub Secrets.
           incremental: false
           break_build: false
-          scanners: sast sca
+          scanners: sca
            # Provide SCA API URL
           sca_api_url: https://api.scacheckmarx.com
           # Provide SCA APP URL
