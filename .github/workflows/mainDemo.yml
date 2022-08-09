@@ -22,6 +22,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
       - name: Checkmarx CxFlow Action
   # You may pin to the exact commit or the version.
   # uses: checkmarx-ts/checkmarx-cxflow-github-action@49d8269b14ca87910ba003d47a31fa0c7a11f2fe
