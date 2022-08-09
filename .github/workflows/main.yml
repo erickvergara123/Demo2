@@ -1,50 +1,55 @@
-# This is a basic workflow to create GitHub Issues using the Checkmarx CxFlow GitHub Action.  It runs on a pull-request to the main branch.
-# Cambio
-# The following GitHub Secrets must be first defined:
-#   - CHECKMARX_URL
-#   - CHECKMARX_USER
-#   - CHECKMARX_PASSWORD
-#   - CHECKMARX_CLIENT_SECRET
-#   - GH_TOKEN
-#
-#
-# Update the 'team' field to reflect the team name used in Checkmarx.
-#
-# For full documentation,including a list of all inputs, please refer to the README https://github.com/checkmarx-ts/checkmarx-cxflow-github-action
+# This is a basic workflow to help you get started with Actions
 
-name: CxFlow-GitHub-Pull-Request
+name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request events but only for the master branch
+# Controls when the workflow will run
 on:
-  pull_request:
-    types: [opened, reopened, synchronize] #Types specify which pull request events will trigger the workflow. For more events refer Github Actions documentation.
-    branches:
-    - master
-    - main
+  # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
-    branches:
-    - master
-    - main
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel - this job is specifically configured to use the Checkmarx CxFlow Action
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on - Ubuntu is required as Docker is leveraged for the action
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-    - name: Checkmarx CxFlow Action
-      uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.5
-      with:
-        project: ${{ github.repository }}-PR
-        team: /CxServer
-        checkmarx_url: "https://epl.checkmarx.net"   # To be stored in GitHub Secrets.
-        checkmarx_username: "githubactions"  # To be stored in GitHub Secrets.
-        checkmarx_password: "Temporal1."  # To be stored in GitHub Secrets.
-        checkmarx_client_secret: "014DF517-39D1-4453-B7B3-9930C563627C"  # To be stored in GitHub Secrets.
-        incremental: false
-        break_build: false
-        scanners: sast
-        bug_tracker: GITHUBPULL
-        params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.head_ref }} --merge-id=${{ github.event.number }} --cx-flow.filterSeverity --cx-flow.filterCategory
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Checkmarx CxFlow Action
+  # You may pin to the exact commit or the version.
+  # uses: checkmarx-ts/checkmarx-cxflow-github-action@49d8269b14ca87910ba003d47a31fa0c7a11f2fe
+        uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.5
+        with:
+          # Provide Checkmarx URL
+          project: ${{ github.repository }}-PR
+          team: /CxServer
+          checkmarx_url: "https://epl.checkmarx.net"   # To be stored in GitHub Secrets.
+          checkmarx_username: "githubactions"  # To be stored in GitHub Secrets.
+          checkmarx_password: "Temporal1."  # To be stored in GitHub Secrets.
+          checkmarx_client_secret: "014DF517-39D1-4453-B7B3-9930C563627C"  # To be stored in GitHub Secrets.
+          incremental: false
+          break_build: false
+          scanners: sast sca
+           # Provide SCA API URL
+          sca_api_url: https://api.scacheckmarx.com
+          # Provide SCA APP URL
+          sca_app_url: https://sca.scacheckmarx.com
+          # Provide SCA Access Control URL
+          sca_access_control_url: https://platform.checkmarx.net
+          # Provide SCA Tenant
+          sca_tenant: serviciosliverpool 
+          # Provide SCA Username
+          sca_username: SCASCAN 
+          # Provide SCA Password
+          sca_password: Qwerty1234.
+          bug_tracker: WAIT
+          params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.head_ref }} --merge-id=${{ github.event.number }} --cx-flow.filterSeverity --cx-flow.filterCategory
