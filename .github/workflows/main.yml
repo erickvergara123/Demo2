@@ -31,7 +31,7 @@ jobs:
         with:
           # Provide Checkmarx URL
           project: ${{ github.repository }}-PR
-          team: /CxServer
+          team: CxServer
           checkmarx_url: "https://epl.checkmarx.net"   # To be stored in GitHub Secrets.
           checkmarx_username: "githubactions"  # To be stored in GitHub Secrets.
           checkmarx_password: "Temporal1."  # To be stored in GitHub Secrets.
@@ -40,16 +40,16 @@ jobs:
           break_build: false
           scanners: sast sca
            # Provide SCA API URL
-          sca_api_url: https://api.scacheckmarx.com
+          sca_api_url: "https://api.scacheckmarx.com"
           # Provide SCA APP URL
-          sca_app_url: https://sca.scacheckmarx.com
+          sca_app_url: "https://sca.scacheckmarx.com"
           # Provide SCA Access Control URL
-          sca_access_control_url: https://platform.checkmarx.net
+          sca_access_control_url: "https://platform.checkmarx.net"
           # Provide SCA Tenant
-          sca_tenant: serviciosliverpool 
+          sca_tenant: "serviciosliverpool"
           # Provide SCA Username
-          sca_username: SCASCAN 
+          sca_username: "SCASCAN" 
           # Provide SCA Password
-          sca_password: Qwerty1234.
+          sca_password: "Qwerty1234."
           bug_tracker: WAIT
           params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.head_ref }} --merge-id=${{ github.event.number }} --cx-flow.filterSeverity --cx-flow.filterCategory
