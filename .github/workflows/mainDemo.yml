@@ -38,23 +38,18 @@ jobs:
           checkmarx_client_secret: "014DF517-39D1-4453-B7B3-9930C563627C"  # To be stored in GitHub Secrets.
           incremental: false
           break_build: false
-          scanners: sast sca
+          scanners: sast 
            # Provide SCA API URL
-          sca_api_url: https://api.scacheckmarx.com
+         # sca_api_url: https://api.scacheckmarx.com
           # Provide SCA APP URL
-          sca_app_url: https://sca.scacheckmarx.com
+          #sca_app_url: https://sca.scacheckmarx.com
           # Provide SCA Access Control URL
-          sca_access_control_url: https://platform.checkmarx.net
+          #sca_access_control_url: https://platform.checkmarx.net
           # Provide SCA Tenant
-          sca_tenant: serviciosliverpool 
+          #sca_tenant: serviciosliverpool 
           # Provide SCA Username
-          sca_username: SCASCAN 
+          #sca_username: SCASCAN 
           # Provide SCA Password
-          sca_password: Qwerty1234.
-          # bug_tracker: Sarif
+          #sca_password: Qwerty1234.
+          bug_tracker: WAIT
           params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.head_ref }} --merge-id=${{ github.event.number }} --cx-flow.filterSeverity --cx-flow.filterCategory
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: cx.sarif
-
